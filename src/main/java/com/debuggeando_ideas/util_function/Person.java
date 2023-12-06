@@ -1,16 +1,20 @@
 package com.debuggeando_ideas.util_function;
 
-import lombok.ToString;
-
 import java.io.Serializable;
 
-@ToString
-class Person implements Serializable {
-    private String name;
-    private Integer age;
+import lombok.ToString;
 
-    public Person(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
+@ToString
+public class Person implements Serializable {
+
+	private static final long serialVersionUID = -4206694295938705934L;
+
+	private String name;
+	private Integer age;
+
+	public Person(String name, Integer age) {
+		this.name = name;
+		this.age = age;
+	}
+
 }
