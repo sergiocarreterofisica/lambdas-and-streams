@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @Builder
 public class Videogame {
+	
     private String name;
     private Double price;
     private Console console;
