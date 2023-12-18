@@ -31,7 +31,7 @@ public class StreamIntermediatOperators {
 
 		mapVsflatMapOperator(Database.videogames.stream());
 
-//		peekOperator(Database.videogames.stream());
+		peekOperator(Database.videogames.stream());
 
 		sortOperator(Database.videogames.stream());
 
