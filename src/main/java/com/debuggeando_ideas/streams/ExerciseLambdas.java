@@ -16,16 +16,15 @@ public class ExerciseLambdas {
 		System.out.println(exercise1(Database.videogames.stream()));
 
 		exercise2(Database.videogames.stream()).forEach(System.out::println);
-		exercise2(Database.videogames.stream());
 
 		System.out.println(exercise3(Database.videogames.stream()));
-		
+
 		exercise4(Database.videogames.stream()).forEach(System.out::println);
-		
+
 		exercise5(Database.videogames.stream()).forEach(System.out::println);
-		
+
 		exercise6(Database.videogames.stream()).forEach(System.out::println);
-		
+
 	}
 
 	/*
@@ -35,7 +34,8 @@ public class ExerciseLambdas {
 	 */
 	static Boolean exercise1(Stream<Videogame> stream) {
 
-		Long ejercicio1 = stream.filter(v -> v.getTotalSold() > 10 && (!v.getIsDiscount() || v.getPrice() > 9.99)).count();
+		Long ejercicio1 = stream.filter(v -> v.getTotalSold() > 10 && (!v.getIsDiscount() || v.getPrice() > 9.99))
+				.count();
 
 		return ejercicio1.intValue() > 1;
 
@@ -50,8 +50,8 @@ public class ExerciseLambdas {
 
 		System.out.println("-------------------------------");
 
-		return stream.filter(v -> v.getConsole().equals(Console.XBOX)).distinct().map(Videogame::getName)
-				.peek(System.out::println);
+		return stream.distinct().filter(v -> v.getConsole().equals(Console.XBOX)).peek(System.out::println)
+				.map(Videogame::getName);
 
 	}
 
@@ -76,7 +76,7 @@ public class ExerciseLambdas {
 	static Stream<String> exercise4(Stream<Videogame> stream) {
 
 		System.out.println("-------------------------------");
-		
+
 		return stream.flatMap(v -> v.getReviews().stream().map(Review::getComment));
 	}
 
@@ -85,21 +85,23 @@ public class ExerciseLambdas {
 	 * sin utilizar el operador filter().
 	 */
 	static Stream<Double> exercise5(Stream<Videogame> stream) {
-		
+
 		System.out.println("-------------------------------");
-		
-		return stream.sorted(Comparator.comparingDouble(Videogame::getPrice)).takeWhile(v -> v.getPrice() < 20.0).map(Videogame::getPrice);
+
+		return stream.sorted(Comparator.comparingDouble(Videogame::getPrice)).takeWhile(v -> v.getPrice() < 20.0)
+				.map(Videogame::getPrice);
 	}
-	
+
 	/*
 	 * Regresar un stream con los todos los videojuegos con precio menores a 20.0
 	 * sin utilizar el operador filter().
 	 */
 	static Stream<Double> exercise6(Stream<Videogame> stream) {
-		
+
 		System.out.println("-------------------------------");
-		
-		return stream.sorted(Comparator.comparingDouble(Videogame::getPrice).reversed()).takeWhile(v -> v.getPrice() >= 20.0).map(Videogame::getPrice);
+
+		return stream.sorted(Comparator.comparingDouble(Videogame::getPrice).reversed())
+				.takeWhile(v -> v.getPrice() >= 20.0).map(Videogame::getPrice);
 	}
 
 }
